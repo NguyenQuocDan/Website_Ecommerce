@@ -1,8 +1,10 @@
 <?php
+ob_start();
+
 
 class ShopController
 {
-    private $shopDB;
+    public $shopDB;
 
     public function __construct()
     {
@@ -12,7 +14,7 @@ class ShopController
     function index()
     {
         $products = $this->shopDB->getAll();
-        include_once "View/product/list.php";
+        include "View/product/list.php";
     }
     public function delete()
     {
@@ -23,7 +25,7 @@ class ShopController
             $this->shopDB->delete($_POST["id"]);
             header("location: admin.php");
         }
-        include "view/product/delete.php";
+        include "../View/product/delete.php";
 
     }
 

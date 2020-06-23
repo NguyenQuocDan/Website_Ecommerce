@@ -1,7 +1,4 @@
 <?php
-namespace Controller;
-use Category;
-use CategoryDB;
 
 
     class CategoriesController
@@ -16,6 +13,7 @@ use CategoryDB;
         public  function index()
         {
             $categories = $this->categoryDB->getall();
-            include "View/category/list.php";
+            include "../../View/category/list.php";
         }
+
     }
