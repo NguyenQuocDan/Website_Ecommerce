@@ -5,10 +5,10 @@
                 <div class="product_grid">
                     <?php foreach($products as $product): ?>
                     <div class="product">
-                        <div class="product_image"><img src="images/product_4.jpg<?php echo $product->getImage();?>" alt=""></div>
+                        <div class="product_image"><img src="images/product_4.jpg" alt=""></div>
                         <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         <div class="product_content">
-                            <div class="product_title"><a href="product.html"><?php echo $product->getName();?></a></div>
+                            <div class="product_title"><a href="index.php?page=product&action=show-product&id=<?php echo $product->getId() ?>"><?php echo $product->getName();?></a></div>
                             <div class="product_price"><?php echo $product->getPrice();?></div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@
                                     <a href="index.php">Home</a>
                                     <ul>
                                         <li><a href="View/categories.html">Categories</a></li>
-                                        <li><a href="View/product.html">Product</a></li>
+                                        <li><a href="View/product/product.php">Product</a></li>
                                         <li><a href="View/cart.html">Cart</a></li>
                                         <li><a href="View/checkout.html">Check out</a></li>
                                         <li><a href="View/contact.html">Contact</a></li>

@@ -1,292 +1,196 @@
 <?php
-
-use Controller\CategoriesController;
-include_once "Model/product/ProductDB.php";
-include_once "Model/product/Product.php";
-include_once "Model/DBConnection.php";
-include_once "Controller/ShopController.php";
+include_once "include_src.php";
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Sublime</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Sublime project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+    <title>Sublime</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sublime project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
 </head>
 <body>
-
+<a href="index.php?page=product.php&action=add"></a>
 <div class="super_container">
-	<!-- Header -->
+    <!-- Header -->
     <?php include "header.php"; ?>
-	<!-- Menu -->
+    <!-- Menu -->
     <?php include "menu.php"; ?>
-	<!-- Home -->
+    <!-- Home -->
     <?php include "home.php"; ?>
-	<!-- Ads -->
+    <!-- Ads -->
     <?php include "ads.php"; ?>
-	<!-- Products -->
+    <!-- Products -->
 
     <?php
     $page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : null;
     $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : null;
 
-    switch ($page){
-        case "category":
+    $shopController = new ShopController();
+
+    switch ($page) {
+        case "product":
+            switch ($action) {
+                case "show-product":
+                    $id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : null;
+                    $shopController->getById($id);
+                    break;
+
+            }
             break;
+
         default:
-            $controller = new ShopController();
+            $shopController->index();
+
+
     }
 
-    switch ($action){
-        case "edit":
-            $controller->edit();
-            break;
-        default:
-            $controller->index();
-    }
+    //    switch ($action) {
+    //        case "edit":
+    //            $controller->edit();
+    //            break;
+    //        case "add":
+    //            $controller->add();
+    //            break;
+    //        case "product":
+    //            $controller->getById();
+    //            break;
+    //
+    //        default:
+    //            $controller->index();
+    //    }
     ?>
-<!--    <div class="products">-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--                <div class="col">-->
-<!---->
-<!--                    <div class="product_grid">-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_1.jpg" alt=""></div>-->
-<!--                            <div class="product_extra product_new"><a href="categories.html">New</a></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_2.jpg" alt=""></div>-->
-<!--                            <div class="product_extra product_sale"><a href="categories.html">Sale</a></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_3.jpg" alt=""></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_4.jpg" alt=""></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_5.jpg" alt=""></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_6.jpg" alt=""></div>-->
-<!--                            <div class="product_extra product_hot"><a href="categories.html">Hot</a></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_7.jpg" alt=""></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <!-- Product -->-->
-<!--                        <div class="product">-->
-<!--                            <div class="product_image"><img src="images/product_8.jpg" alt=""></div>-->
-<!--                            <div class="product_extra product_sale"><a href="categories.html">Hot</a></div>-->
-<!--                            <div class="product_content">-->
-<!--                                <div class="product_title"><a href="product.html">Smart Phone</a></div>-->
-<!--                                <div class="product_price">$670</div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                    </div>-->
-<!---->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    --><?php
-//    $page = isset($_REQUEST["page"]) ? $_REQUEST["page"] : null;
-//    $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : null;
-//
-//    switch ($page) {
-//        case "category":
-//            $controller = new CategoryController();
-//            break;
-//        case 'order':
-//            $controller = new OrderController();
-//            break;
-//        case "comment":
-//            $controller = new CommentController();
-//            break;
-//        case "blog":
-//            $controller = new BlogController();
-//            break;
-//        case "about-me":
-//            include_once "about_me.php";
-//            break;
-//        case "contact":
-//            include_once "contact.php";
-//            break;
-//        case "categories":
-//            include_once "base-categories.php";
-//            break;
-//        default:
-//            $controller = new ShopController();
-//    }
-//    ?>
+    <div class="avds_xl">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="avds_xl_container clearfix">
+                        <div class="avds_xl_background" style="background-image:url(images/avds_xl.jpg)"></div>
+                        <div class="avds_xl_content">
+                            <div class="avds_title">Amazing Devices</div>
+                            <div class="avds_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a
+                                ultricies metus.
+                            </div>
+                            <div class="avds_link avds_xl_link"><a href="View/categories.html">See More</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="avds_xl">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="avds_xl_container clearfix">
-						<div class="avds_xl_background" style="background-image:url(images/avds_xl.jpg)"></div>
-						<div class="avds_xl_content">
-							<div class="avds_title">Amazing Devices</div>
-							<div class="avds_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus.</div>
-							<div class="avds_link avds_xl_link"><a href="View/categories.html">See More</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- Icon Boxes -->
 
-	<!-- Icon Boxes -->
+    <div class="icon_boxes">
+        <div class="container">
+            <div class="row icon_box_row">
 
-	<div class="icon_boxes">
-		<div class="container">
-			<div class="row icon_box_row">
+                <!-- Icon Box -->
+                <div class="col-lg-4 icon_box_col">
+                    <div class="icon_box">
+                        <div class="icon_box_image"><img src="images/icon_1.svg" alt=""></div>
+                        <div class="icon_box_title">Free Shipping Worldwide</div>
+                        <div class="icon_box_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed
+                                nec molestie.</p>
+                        </div>
+                    </div>
+                </div>
 
-				<!-- Icon Box -->
-				<div class="col-lg-4 icon_box_col">
-					<div class="icon_box">
-						<div class="icon_box_image"><img src="images/icon_1.svg" alt=""></div>
-						<div class="icon_box_title">Free Shipping Worldwide</div>
-						<div class="icon_box_text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-						</div>
-					</div>
-				</div>
+                <!-- Icon Box -->
+                <div class="col-lg-4 icon_box_col">
+                    <div class="icon_box">
+                        <div class="icon_box_image"><img src="images/icon_2.svg" alt=""></div>
+                        <div class="icon_box_title">Free Returns</div>
+                        <div class="icon_box_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed
+                                nec molestie.</p>
+                        </div>
+                    </div>
+                </div>
 
-				<!-- Icon Box -->
-				<div class="col-lg-4 icon_box_col">
-					<div class="icon_box">
-						<div class="icon_box_image"><img src="images/icon_2.svg" alt=""></div>
-						<div class="icon_box_title">Free Returns</div>
-						<div class="icon_box_text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-						</div>
-					</div>
-				</div>
+                <!-- Icon Box -->
+                <div class="col-lg-4 icon_box_col">
+                    <div class="icon_box">
+                        <div class="icon_box_image"><img src="images/icon_3.svg" alt=""></div>
+                        <div class="icon_box_title">24h Fast Support</div>
+                        <div class="icon_box_text">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed
+                                nec molestie.</p>
+                        </div>
+                    </div>
+                </div>
 
-				<!-- Icon Box -->
-				<div class="col-lg-4 icon_box_col">
-					<div class="icon_box">
-						<div class="icon_box_image"><img src="images/icon_3.svg" alt=""></div>
-						<div class="icon_box_title">24h Fast Support</div>
-						<div class="icon_box_text">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-						</div>
-					</div>
-				</div>
+            </div>
+        </div>
+    </div>
 
-			</div>
-		</div>
-	</div>
+    <!-- Newsletter -->
 
-	<!-- Newsletter -->
+    <div class="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="newsletter_border"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="newsletter_content text-center">
+                        <div class="newsletter_title">Subscribe to our newsletter</div>
+                        <div class="newsletter_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                                a ultricies metus. Sed nec molestie eros</p></div>
+                        <div class="newsletter_form_container">
+                            <form action="#" id="newsletter_form" class="newsletter_form">
+                                <input type="email" class="newsletter_input" required="required">
+                                <button class="newsletter_button trans_200"><span>Subscribe</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="newsletter">
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="newsletter_border"></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-8 offset-lg-2">
-					<div class="newsletter_content text-center">
-						<div class="newsletter_title">Subscribe to our newsletter</div>
-						<div class="newsletter_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros</p></div>
-						<div class="newsletter_form_container">
-							<form action="#" id="newsletter_form" class="newsletter_form">
-								<input type="email" class="newsletter_input" required="required">
-								<button class="newsletter_button trans_200"><span>Subscribe</span></button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- Footer -->
 
-	<!-- Footer -->
-
-	<div class="footer_overlay"></div>
-	<footer class="footer">
-		<div class="footer_background" style="background-image:url(images/footer.jpg)"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-						<div class="footer_logo"><a href="#">Sublime.</a></div>
-						<div class="copyright ml-auto mr-auto"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-						<div class="footer_social ml-lg-auto">
-							<ul>
-								<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+    <div class="footer_overlay"></div>
+    <footer class="footer">
+        <div class="footer_background" style="background-image:url(images/footer.jpg)"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                        <div class="footer_logo"><a href="#">Sublime.</a></div>
+                        <div class="copyright ml-auto mr-auto">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                                                                aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+                        <div class="footer_social ml-lg-auto">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
 
 <script src="js/jquery-3.2.1.min.js"></script>

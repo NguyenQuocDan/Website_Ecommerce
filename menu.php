@@ -11,7 +11,7 @@
                     <a href="index.php">Home<i class="fa fa-angle-down"></i></a>
                     <ul class="page_menu_selection menu_mm">
                         <li class="page_menu_item menu_mm"><a href="View/categories.html">Categories<i class="fa fa-angle-down"></i></a></li>
-                        <li class="page_menu_item menu_mm"><a href="View/product.html">Product<i class="fa fa-angle-down"></i></a></li>
+                        <li class="page_menu_item menu_mm"><a href="View/product/product.php">Product<i class="fa fa-angle-down"></i></a></li>
                         <li class="page_menu_item menu_mm"><a href="View/cart.html">Cart<i class="fa fa-angle-down"></i></a></li>
                         <li class="page_menu_item menu_mm"><a href="View/checkout.html">Checkout<i class="fa fa-angle-down"></i></a></li>
                         <li class="page_menu_item menu_mm"><a href="View/contact.html">Contact<i class="fa fa-angle-down"></i></a></li>

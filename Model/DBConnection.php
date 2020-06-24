@@ -1,6 +1,9 @@
 <?php
-namespace  Model\DB;
+
+namespace Model\DB;
+
 use PDO;
+use PDOException;
 
 class DB
 {
@@ -14,6 +17,10 @@ class DB
 
     public function connection()
     {
-        return new PDO($this->dsn, $this->user, $this->pass);
+        try {
+            return new PDO($this->dsn, $this->user, $this->pass);
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
     }
 }

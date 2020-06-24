@@ -12,6 +12,18 @@ class ProductDB
         $db = new DB();
         $this->db = $db->connection();
     }
+    public function add($product)
+    {
+        $sql = "INSERT INTO products(name, desc ,image,price ) VALUES (?,?,?,?)";
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindParam(1, $product->getName());
+        $stmt->bindParam(2, $product->getDesc());
+        $stmt->bindParam(3, $product->getImage());
+        $stmt->bindParam(4, $product->getPrice());
+        return $stmt->execute();
+    }
+
 
     public function getById($id)
     {
