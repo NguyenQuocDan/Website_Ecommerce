@@ -52,13 +52,13 @@ class ShopController
 
             $product = new Product(
                 $_POST["name"],
-                $_POST["price"],
                 $_POST["desc"],
-                $_POST["image"]
-
+                $target_file,
+                $_POST["price"],
+                $_POST['type']
         );
-
-            if ($isSuccess = $this->shopDB->add($product)) {
+            $isSuccess = true;
+            if ($isSuccess == $this->shopDB->add($product)) {
                 $message = "Add product successful!";
             } else {
                 $message = "Something error! Try again!";

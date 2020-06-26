@@ -14,10 +14,6 @@
                     <label for="productname" class="loginFormElement">Name Product:</label>
                     <input class="form-control" name="name" type="text">
                 </div>
-
-                <input type="hidden" name="createdDate" value="<?php
-                date_default_timezone_set("Asia/Ho_Chi_Minh"); echo date("Y-m-d H:i:s"); ?>">
-
                 <div class="form-group">
                     <label for="productprice" class="loginFormElement">Product Price</label>
                     <input class="form-control" name="price" type="text">
@@ -25,7 +21,7 @@
 
                 <select class="form-control" id="productSelect" name="type"><option>Please Select Type</option>
                     <?php foreach ($categories as $category): ?>
-                        <option value="<?php echo $category->getName(); ?>"><?php echo $category->getName(); ?></option>
+                        <option value="<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></option>
                     <?php endforeach;?>
                 </select>
 
@@ -36,10 +32,9 @@
                     <input class="filestyle" data-icon="false" name="image" type="file">
 
                 </div>
-
                 <div class="form-group">
                     <label class="loginformelement" for="productdescription">Product Description</label>
-                    <input name="description" class="form-control input-lg" type="text">
+                    <input name="desc" class="form-control input-lg" type="text">
 
                     <button type="submit" class="btn btn-success loginFormElement">Add Product</button>
 

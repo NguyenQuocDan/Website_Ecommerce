@@ -44,7 +44,10 @@ include_once "include_src.php";
                     $id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : null;
                     $shopController->getById($id);
                     break;
+                case "create-product":
 
+                    $shopController->add();
+                    break;
             }
             break;
 

@@ -14,13 +14,19 @@ class ProductDB
     }
     public function add($product)
     {
-        $sql = "INSERT INTO products(name, desc ,image,price ) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO `products` ( `name`, `desc`, `image`, `price`, `category_id`) VALUES (?, ?, ?, ?, ?);";
         $stmt = $this->db->prepare($sql);
+        $name = $product->getName();
+        $desc = $product->getDesc();
+        $image = $product->getImage();
+        $price = $product->getPrice();
+        $category_id = $product->getCategory_Id();
+        $stmt->bindParam(1, $name );
+        $stmt->bindParam(2, $desc);
+        $stmt->bindParam(3, $image);
+        $stmt->bindParam(4, $price);
+        $stmt->bindParam(5, $category_id);
 
-        $stmt->bindParam(1, $product->getName());
-        $stmt->bindParam(2, $product->getDesc());
-        $stmt->bindParam(3, $product->getImage());
-        $stmt->bindParam(4, $product->getPrice());
         return $stmt->execute();
     }
 
@@ -36,7 +42,8 @@ class ProductDB
         $product = new Product($result["name"],
             $result["desc"],
             $result["image"],
-            $result["price"]);
+            $result["price"],
+            $result["category_id"]);
         $product->setId($result["id"]);
 
         return $product;
@@ -55,7 +62,8 @@ class ProductDB
             $product = new Product($item["name"],
                 $item["desc"],
                 $item["image"],
-                $item["price"]);
+                $item["price"],
+                $item["category_id"]);
             $product->setId($item["id"]);
             array_push($products, $product);
         }

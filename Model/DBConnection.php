@@ -7,7 +7,7 @@ use PDOException;
 
 class DB
 {
-    private $dsn = "mysql:host=127.0.0.1;dbname=Website_Ecommerce";
+    private $dsn = "mysql:host=127.0.0.1;dbname=Website_Ecommerce; charset=utf8";
     private $user = "root";
     private $pass = "@Quocdan123";
 
